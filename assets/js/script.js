@@ -69,7 +69,7 @@ for (var i = 0; i < questions[currentQuestion].options.length; i++){
 };
 
 function incorrect(){
-    timeLeft -= 0;
+    timeLeft -= 10;
     startQuiz();
 }
 
@@ -81,6 +81,9 @@ function correct(){
 
 function endQuiz(){
     clearInterval(timer);
-    var gameOver = "GAME OVER" + "<br>" + "you got " + score + "/5";
+    var gameOver = "GAME OVER" + "<br>" + "you got " + score + "/5" + "<br>" + 
+    `<input type="text" id="name" placeholder ="Enter Name">
+    <button onclick="finalScore()">Save</button> `
     document.getElementById("starter").innerHTML = gameOver;
 }
+
