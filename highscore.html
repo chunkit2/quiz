@@ -12,7 +12,7 @@
 
     
 
-    <!-- Bootstrap core CSS -->
+    
 <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -37,25 +37,17 @@
   </head>
   <body>
     
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="./highscore.html">View Highscore</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <span class="navbar-text navbar bg-dark">
-        Time: <Span id="timeLeft"></Span>
-    </Span>
-  </div>
-</nav>
 
 <main class="container">
 
   <div id="starter" class="starter-template text-center py-5 px-3">
-    <h1>Code Quiz</h1>
-    <p class="lead">How good are you at coding trivia?!?!</p>
-    <button onclick="startTimer()">Begin Quiz</button>
+    <h1>High Score</h1>
+    <div>
+    <ul id="scorePlacement"></ul>
+    </div>
+    <button onclick=returnIndex()>Return to Quiz</button>
+    <button onclick=clearScore()>Clear all Scores</button>
   </div>
 
 </main>

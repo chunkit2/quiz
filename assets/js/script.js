@@ -86,4 +86,35 @@ function endQuiz(){
     <button onclick="finalScore()">Save</button> `
     document.getElementById("starter").innerHTML = gameOver;
 }
+function finalScore(){
+    var codeName = document.getElementById("name").value;
+    var topScore = score;
+    var scoreList = {name: codeName, score:topScore};
+    var highScore = localStorage.getItem("highScore");
+    if(highScore===null){
+        highScore=[];
+    }
+    else{highScore=JSON.parse(highScore)}
+    highScore.push(scoreList);
+    var newScore = JSON.stringify(highScore);
+    localStorage.setItem("highscore", newScore);
 
+    window.location.replace("./highscore.html");
+}
+function returnIndex(){
+    window.location.replace("./index.html");
+}
+function clearScore(){
+    localStorage.clear();
+    location.reload();
+}
+var scorePlacement = document.querySelector("#scorePlacement");
+var highScore = localStorage.getItem("highscore");
+highScore=JSON.parse(highScore);
+if(highScore!==null){
+    for (i=0; i<highScore.length; i++){
+        var showScore = document.createElement("li");
+        showScore.textContent=highScore[i].name + " / " + highScore[i].score;
+        scorePlacement.appendChild(showScore)
+    }
+}
