@@ -1,58 +1,86 @@
 // declare questions variable.
 var questions = [
     {
-        q: "String values must be enclosed within _________ when being asigned to variables.", 
-        c: ["quotes", "curly brackets", "parenthesis", "commas"], 
-        a: "quotes"
+        headline: "String values must be enclosed within _________ when being asigned to variables.", 
+        options: ["quotes", "curly brackets", "parenthesis", "commas"], 
+        answer: "quotes"
     },
     {
-        q: "The condition in an if/else statement is enclosed within _______.",
-        c: ["quotes", "curly brackets", "square brackets", "parenthesis"],
-        a: "parenthesis"
+        headline: "The condition in an if/else statement is enclosed within _______.",
+        options: ["quotes", "curly brackets", "square brackets", "parenthesis"],
+        answer: "parenthesis"
     },
     {
-        q: "A very useful tool for use during development and debugging for printing content to the debugger is _______.",
-        c: ["javascrpt", "terminal/bash", "for loops","console.log"],
-        a: "console.log"
+        headline: "A very useful tool for use during development and debugging for printing content to the debugger is _______.",
+        options: ["javascrpt", "terminal/bash", "for loops","console.log"],
+        answer: "console.log"
     },
     {
-        q: "Commonly used data types do not include _________. ",
-        c: ["strings", "booleans", "alerts", "number"],
-        a: "alerts"
+        headline: "Commonly used data types do not include _________. ",
+        options: ["strings", "booleans", "alerts", "number"],
+        answer: "alerts"
     },
     {
-        q: "Arrays in javascript can be used to store ________.",
-        c: ["numbers and strings", "other arrays", "booleans", "all of the above"],
-        a: "all of the above"
+        headline: "Arrays in javascript can be used to store ________.",
+        options: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+        answer: "all of the above"
     }
 ];
-var score = 0 
-var currentQuestion = 0
+var score = 0; 
+var currentQuestion = 0;
 var timeLeft = 60;
+var timer;
+
+function startTimer(){
+    document.getElementById("timeLeft").innerHTML=timeLeft;
+
+    timer=setInterval(function(){
+        timeLeft--;
+        document.getElementById("timeLeft").innerHTML=timeLeft;
+        if (timeLeft<=0){
+            clearInterval(timer);
+            endQuiz();
+        }
+    },1000);
+    startQuiz();
+}
 // function to start the quiz 
 function startQuiz(){
-    // points towords the html section "starter" 
+     
     currentQuestion++;
-    var questionBody = questions[currentQuestion].q + "<br>";
-
-for (var i = 0; i < questions[currentQuestion].c.length; i++){
-    var playerChoice = "<button onclick = [A]>[C]</button>";
-    playerChoice = playerChoice.replace("[C]", questions[currentQuestion].c[i]);
-    
-    if (questions[currentQuestion].c[i]===questions[currentQuestion.a]) {
-        playerChoice = playerChoice.replace("[A]", "correct()")
+    if (currentQuestion>questions.length){
+        endQuiz();
     }
-    else {playerChoice = playerChoice.replace("[A]", "incorrect()")}
+    var questionBody = questions[currentQuestion].headline + "<br>";
+
+for (var i = 0; i < questions[currentQuestion].options.length; i++){
+    var playerChoice = "<button onclick=[ANSWER]>[C]</button>";
+    playerChoice = playerChoice.replace("[C]", questions[currentQuestion].options[i]);
+    
+    if (questions[currentQuestion].options[i]===questions[currentQuestion].answer) {
+        playerChoice = playerChoice.replace("[ANSWER]", "correct()")
+    }
+    else {playerChoice = playerChoice.replace("[ANSWER]", "incorrect()")
+    }
     questionBody += playerChoice
     }
     document.getElementById("starter").innerHTML = questionBody;
 
 };
-function correct (){
+
+function incorrect(){
+    timeLeft -= 0;
+    startQuiz();
+}
+
+function correct(){
     score += 1;
     startQuiz();
 }
-function incorrect (){
-    timeLeft -=10;
-    startQuiz();
+
+
+function endQuiz(){
+    clearInterval(timer);
+    var gameOver = "GAME OVER" + "<br>" + "you got " + score + "/5";
+    document.getElementById("starter").innerHTML = gameOver;
 }
