@@ -7,4 +7,4 @@ For this project, I made a code quiz game which has a timer, records the players
 https://chunkit2.github.io/quiz/
 
 ## Screenshot 
-![image]()
+![image](https://raw.githubusercontent.com/chunkit2/quiz/main/assets/image/screenshot.JPG)
