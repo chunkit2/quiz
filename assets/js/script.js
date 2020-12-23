@@ -26,3 +26,33 @@ var questions = [
         a: "all of the above"
     }
 ];
+var score = 0 
+var currentQuestion = 0
+var timeLeft = 60;
+// function to start the quiz 
+function startQuiz(){
+    // points towords the html section "starter" 
+    currentQuestion++;
+    var questionBody = questions[currentQuestion].q + "<br>";
+
+for (var i = 0; i < questions[currentQuestion].c.length; i++){
+    var playerChoice = "<button onclick = [A]>[C]</button>";
+    playerChoice = playerChoice.replace("[C]", questions[currentQuestion].c[i]);
+    
+    if (questions[currentQuestion].c[i]===questions[currentQuestion.a]) {
+        playerChoice = playerChoice.replace("[A]", "correct()")
+    }
+    else {playerChoice = playerChoice.replace("[A]", "incorrect()")}
+    questionBody += playerChoice
+    }
+    document.getElementById("starter").innerHTML = questionBody;
+
+};
+function correct (){
+    score += 1;
+    startQuiz();
+}
+function incorrect (){
+    timeLeft -=10;
+    startQuiz();
+}
